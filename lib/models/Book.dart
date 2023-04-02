@@ -5,7 +5,8 @@ class Book {
   final double prix;
   final String description;
   final String coverUrl;
-  final double averageRating;
+  late final double averageRating;
+  int quantite;
 
   Book({
     required this.id,
@@ -15,29 +16,31 @@ class Book {
     required this.description,
     required this.coverUrl,
     required this.averageRating,
+    required this.quantite,
   });
 
-  factory Book.fromJson(Map<String, dynamic> json) {
-    return Book(
-      id: json['id'],
-      title: json['title'],
-      author: json['author'],
-      prix: json['prix'],
-      description: json['description'],
-      coverUrl: json['cover_url'],
-      averageRating: json['average_rating'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
+   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'title': title,
       'author': author,
-      'prix': prix,
+      'coverUrl': coverUrl,
       'description': description,
-      'cover_url': coverUrl,
-      'average_rating': averageRating,
+      'prix': prix,
+      'averageRating':averageRating,
+      'quantite': quantite,
     };
   }
+
+  void ajouterQuantite() {
+    this.quantite += 1;
+  }
+
+  void dininuerQuantite() {
+    if (this.quantite > 1) {
+      this.quantite -= 1;
+    }
+  }
+
+ 
 }
